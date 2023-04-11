@@ -1,0 +1,27 @@
+- name:
+  set_fact:
+    download_soft_version: "{{ lookup('ansible.builtin.vars', 'download_'+ tool_name +'_version') | default('') }}"
+    download_soft_scm: "{{ lookup('ansible.builtin.vars', 'download_'+ tool_name +'_scm') | default('') }}"
+    download_soft_install: "{{ lookup('ansible.builtin.vars', 'download_'+ tool_name +'_install') | default('') }}"
+
+- name: "Find latest version for {{ tool_name }}"
+  block:
+   - name: Checks latest version online
+     shell:
+       cmd: "git ls-remote --refs --tags {{ download_soft_scm }} | cut -d '/'  -f3 |sort --version-sort | tail -n1"
+     register: "gitLatestVersion"
+   - set_fact:
+       download_soft_version: "{{ gitLatestVersion.stdout_lines[0] }}"
+  when: "download_soft_scm != '' and download_soft_version == 'latest'"
+
+- name: "Download tool: {{ tool_name }}"
+  debug:
+    var: "download_soft_version"
+
+- name: "Installing tool {{ tool_name }} through role"
+  include_role:
+    name: "{{ download_soft_install.role }}"
+  vars:
+    asdf_version: "{{download_soft_version}}" # todo adapt to each soft
+    ansible_become: "{{ download_soft_install.become | default('no') }}"
+  when: "download_soft_install.role"

@@ -1,0 +1,18 @@
+downloads_deb:
+  - url: https://release.gitkraken.com/linux/gitkraken-amd64.deb
+    name: gitkraken
+
+downloads_apt:
+  - name: autojump
+  - name: jq
+
+downloads_binaries:
+  - name: yq
+    type: plain
+    url: https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64
+
+downloads_git:
+  - url: https://github.com/zsh-users/zsh-autosuggestions
+    dest: /home/user/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+    tag: v0.7.0
+

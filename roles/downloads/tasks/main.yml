@@ -1,0 +1,40 @@
+- include: 'download_util.yml'
+  loop:
+    - asdf
+    - oh-my-zsh
+  loop_control:
+    loop_var: tool_name
+
+- loop: "{{ downloads_deb }}"
+  name: "Download & install deb package"
+  become: yes
+  ansible.builtin.apt:
+    deb: "{{ item.url }}"
+  when: item.url
+
+- loop: "{{ downloads_apt }}"
+  name: "Download & install APT package"
+  become: yes
+  ansible.builtin.apt:
+    name: "{{ item.name }}"
+    state: "{{ item.state | default('present') }}"
+  when: item.name
+
+- loop: "{{ downloads_binaries }}"
+  name: "Download & install binaries package"
+  become: yes
+  ansible.builtin.get_url:
+    url: "{{ item.url }}"
+    dest: "/usr/bin/{{ item.name }}"
+    mode: "755"
+  when: item.type == 'plain'
+
+
+- loop: "{{ downloads_git }}"
+  name: "Download & clone directories"
+  become: yes
+  ansible.builtin.git:
+    repo: "{{ item.url }}"
+    dest: "{{ item.dest }}"
+    version: "{{ item.tag | default('master') }}"
+

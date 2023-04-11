@@ -1,0 +1,25 @@
+workspaces:
+  workspace-a:
+    directories:
+      - tests
+      - sources
+      - documents
+      - notes
+      - opensource
+    versions:
+      /:
+        kubectl: 1.26.1
+      /opensource/promlens:
+        nodejs: 16.19.0
+      /sources:
+        kubectl: 1.26.0
+  builds-image:
+    directories:
+      - isos
+      - projets
+
+  learning:
+    directories:
+      - react-native
+      - react-native/sources
+

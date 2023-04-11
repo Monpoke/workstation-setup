@@ -1,0 +1,7 @@
+---
+- name: Create Workspaces
+  hosts: all
+  roles:
+    - { name: downloads, tags: downloads }
+    - { name: workspace, tags: workspace }
+    - { name: ansible-role-oh-my-zsh, tags: oh-my-zsh }

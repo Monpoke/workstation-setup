@@ -1,0 +1,17 @@
+asdf_user: "user"
+asdf_group: "user"
+asdf_dir: "/home/user/.asdf"
+asdf_default_tool_versions_file: ".tool-versions"
+asdf_plugins:
+  - name: kubectl
+    repository: https://github.com/asdf-community/asdf-kubectl.git
+    versions: ["1.26.0", "1.26.1"]
+  - name: nodejs
+    repository: https://github.com/asdf-vm/asdf-nodejs.git
+    versions: ["18.14.0", "16.19.0"]
+  - name: kustomize
+    repository: https://github.com/Banno/asdf-kustomize.git
+    versions: ["5.0.1"]
+  - name: packer
+    versions: ["1.8.5"]
+    

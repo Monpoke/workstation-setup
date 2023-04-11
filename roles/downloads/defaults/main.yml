@@ -1,0 +1,12 @@
+download_asdf_version: latest
+download_asdf_scm: https://github.com/asdf-vm/asdf.git
+download_asdf_install: {role: 'cimon-io.asdf', become: 'yes'}
+
+download_oh-my-zsh_version: latest
+download_oh-my-zsh_scm: https://github.com/gantsign/ansible-role-oh-my-zsh.git
+download_oh-my-zsh_install: {role: 'ansible-role-oh-my-zsh', become: 'yes'}
+
+
+downloads_deb: []
+downloads_apt: []
+downloads_binaries: []

@@ -1,0 +1,16 @@
+users:
+- username: user
+  oh_my_zsh:
+      theme: robbyrussell
+      plugins:
+          - aws
+          - git
+          - asdf
+          - autojump
+          - nvm
+          - zsh-autosuggestions
+          - copyfile
+          - kubectl
+          - kubectx
+      update_mode: reminder
+      update_frequency: 3

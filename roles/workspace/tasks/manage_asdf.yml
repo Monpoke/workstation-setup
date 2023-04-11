@@ -1,0 +1,12 @@
+- debug:
+    var: baseCurrentWorkspace
+
+- name: "Setting tools version for directory {{directory.key }}"
+  shell:
+    cmd: "bash -lc 'source /etc/profile.d/asdf.sh ; cd {{ fullPath }} ; asdf local {{ software.key }} {{ software.value }}'"
+  vars:
+    fullPath: "{{ baseCurrentWorkspace}}/{{ directory.key }}"
+  loop: "{{ directory.value | dict2items }}"
+  loop_control:
+    loop_var: software
+    label: Setting {{ software.key }}=={{ software.value }}

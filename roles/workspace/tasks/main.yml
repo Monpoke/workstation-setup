@@ -1,0 +1,5 @@
+- name: Manage workspaces
+  include: manage.yml
+  loop: "{{ workspaces | dict2items }}"
+  loop_control:
+    loop_var: workspace_var

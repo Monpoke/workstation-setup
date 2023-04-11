@@ -1,0 +1,23 @@
+- name: Setting facts
+  set_fact:
+    currentWorkspace: "{{ workspaces[workspace_var.key] }}"
+    baseCurrentWorkspace: "{{ workspace_default_dir }}/{{ workspace_var.key }}"
+
+
+- name: "Create directories for {{ workspace_var.key }}"
+  file:
+    path: "{{ baseCurrentWorkspace + '/' + item }}"
+    state: directory
+    recurse: yes
+  loop: "{{ currentWorkspace.directories }}"
+  when: currentWorkspace.directories | type_debug == "list"
+
+
+- name: "Manage tools directories for {{ workspace_var.key }}"
+  include: 'manage_asdf.yml'
+  vars:
+    baseCurrentWorkspace: "{{ workspace_default_dir }}/{{ workspace_var.key }}"
+  loop: "{{ currentWorkspace.versions | dict2items }}"
+  loop_control:
+    loop_var: directory
+  when: currentWorkspace.versions | type_debug == "dict"

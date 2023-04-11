@@ -1,0 +1,10 @@
+roles:
+  - name: cimon-io.asdf
+    version: "v1.1.0"
+    scm: git
+    src: https://github.com/cimon-io/ansible-role-asdf.git
+  - name: ansible-role-oh-my-zsh
+    version: 2.6.0
+    scm: git
+    src: https://github.com/gantsign/ansible-role-oh-my-zsh
+

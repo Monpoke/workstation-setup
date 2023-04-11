@@ -1,0 +1,10 @@
+#git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+
+
+- name: "Installing tool {{ tool_name }} through role"
+  include_role:
+      name: "{{ download_soft_install.role }}"
+  vars:
+      asdf_version: "{{download_soft_version}}" # todo adapt to each soft
+      ansible_become: "{{ download_soft_install.become | default('no') }}"
+  when: "download_soft_install.role"
